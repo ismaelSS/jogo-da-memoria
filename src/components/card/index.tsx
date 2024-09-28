@@ -2,6 +2,7 @@ import { iCardContent } from "@/app/page";
 import "./styles.css";
 import Image from "next/image";
 import fundoCarta from '@/app/assets/images/cardback.png'
+import CardContent from "../cardContent";
 
 interface iCardFlip{
   content:iCardContent
@@ -30,10 +31,12 @@ export default function CardFlip({isFlipped, content, clickFunction}:iCardFlip) 
             />
           </div>
 
-          <div className="square-side rounded-sm bg-white back flex items-center justify-center">
-            <span className="text-5xl">{content.emoji}</span>
-            <div />
-          </div>
+            <div className="square-side rounded-sm bg-white back flex items-center justify-center">
+          {isFlipped && 
+              <CardContent content={content.emoji}/>
+            }
+              <div />
+            </div>
         </div>
       </div>
     </div>
