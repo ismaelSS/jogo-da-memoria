@@ -1,0 +1,35 @@
+/* SquareFlip.css */
+
+.square-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.perspective {
+  perspective: 1000px;
+}
+
+.square-side {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  transition: transform 0.8s cubic-bezier(0.71, 0.03, 0.56, 0.85);
+}
+
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.flipped .front {
+  transform: rotateY(180deg);
+}
+
+.flipped .back {
+  transform: rotateY(360deg);
+}
