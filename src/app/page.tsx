@@ -5,6 +5,7 @@ import ChangeGameMode from "@/components/changeGameMode";
 import ConfettiCanvas from "@/components/confetti";
 import { gameModes, tGameModesOption } from "@/data/gamemodes";
 import { getRandomEmojis } from "@/utils/functions";
+import { transform } from "next/dist/build/swc";
 import { useEffect, useState } from "react";
 
 export interface iCardContent {
@@ -23,9 +24,12 @@ export default function Home() {
   const [isWin, setIsWind] = useState(false);
   const [reset, setReset] = useState(false);
   const [itensPerScreen, setItensPerScreen] = useState(5);
+  const [containerCardsWidth, setContainerCardsWidth] = useState(450)
 
   const calculateItensPerScreen = (width: number) => {
-    return Math.round(width / 97);
+    let itensQuantity = Math.round(width / 97)
+    if (itensQuantity >= 10) itensQuantity=10;
+    return itensQuantity
   };
 
   useEffect(() => {
@@ -50,6 +54,9 @@ export default function Home() {
       left: (index % itensPerScreen) * 90,
     }));
     setContentList(initialContentList);
+    setContainerCardsWidth(itensPerScreen * 90)
+    console.log(containerCardsWidth);
+    
   }, [reset, gameMode, itensPerScreen]);
 
   useEffect(() => { 
@@ -73,7 +80,7 @@ export default function Home() {
 
           return newContentList;
         });
-      }, 10000);
+      }, 6000);
 
       return () => clearInterval(interval);
     }
@@ -119,11 +126,11 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex flex-col items-center justify-center w-[100vw] max-w-[1480px] h-screen relative">
+      <main className="flex border-4 border-yellow-200 justify-center w-[100vw] max-w-[1480px] h-screen">
         <ChangeGameMode actualMode={gameMode} changeGameModeFunction={changeModeFunction} />
         
-        <div className="absolute top-2 left-2 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 ">
-          <div className="relative">
+        <div className={`border-4 border-orange-400 relative w-[${containerCardsWidth}px] grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8`}>
+
             {contentList.map((content, index) => (
               <div
                 key={index}
@@ -142,7 +149,7 @@ export default function Home() {
                 />
               </div>
             ))}
-          </div>
+
         </div>
       </main>
 

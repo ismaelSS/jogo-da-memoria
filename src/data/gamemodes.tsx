@@ -9,7 +9,7 @@ export const gameModes = {
   },
   normal:{
     cardNumber:15,
-    movement: false
+    movement: true
   },
   dificil:{
     cardNumber:25,
