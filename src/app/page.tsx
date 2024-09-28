@@ -126,10 +126,10 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex border-4 border-yellow-200 justify-center w-[100vw] max-w-[1480px] h-screen">
+      <main className="flex border-4 border-yellow-200  w-[100vw] max-w-[1480px] h-screen">
         <ChangeGameMode actualMode={gameMode} changeGameModeFunction={changeModeFunction} />
         
-        <div className={`border-4 border-orange-400 relative w-[${containerCardsWidth}px] grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8`}>
+        <div className={`border-4 border-orange-400 relative  grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8`}>
 
             {contentList.map((content, index) => (
               <div
