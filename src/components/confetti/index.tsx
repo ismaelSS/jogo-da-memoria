@@ -44,14 +44,14 @@ const ConfettiCanvas: React.FC = () => {
     rgb: string;
     r: number;
     r2: number;
-    opacity: number;
-    dop: number;
-    x: number;
-    y: number;
-    xmax: number;
-    ymax: number;
-    vx: number;
-    vy: number;
+    opacity!: number;
+    dop!: number;
+    x!: number;
+    y!: number;
+    xmax!: number;
+    ymax!: number;
+    vx!: number;
+    vy!: number;
 
     constructor(private context: CanvasRenderingContext2D, private w: number, private h: number) {
       this.style = COLORS[~~range(0, COLORS.length)];
