@@ -25,9 +25,10 @@ export default function Home() {
   const [reset, setReset] = useState(false);
   const [itensPerScreen, setItensPerScreen] = useState(5);
   const [containerCardsWidth, setContainerCardsWidth] = useState(450)
+  const [flipcount, setFlipCount] = useState(0)
 
   const calculateItensPerScreen = (width: number) => {
-    let itensQuantity = Math.round(width / 97)
+    let itensQuantity = Math.round(width / 105)
     if (itensQuantity >= 10) itensQuantity=10;
     return itensQuantity
   };
@@ -80,7 +81,7 @@ export default function Home() {
 
           return newContentList;
         });
-      }, 6000);
+      }, 4000);
 
       return () => clearInterval(interval);
     }
@@ -90,6 +91,7 @@ export default function Home() {
     setFindCards([]);
     setCardsCompare([]);
     setIsLockedFlip(false);
+    setFlipCount(0)
     setTimeout(() => {
       setReset(!reset);
     }, 600);
@@ -97,6 +99,7 @@ export default function Home() {
 
   const changeModeFunction = (mode: tGameModesOption) => {
     setGameMode(mode);
+    resetGame()
   };
 
   const WinCheck = () => {
@@ -107,8 +110,10 @@ export default function Home() {
 
   const compareCardsfunction = (content: iCardContent) => {
     if (cardsCompare.length === 0) {
+      setFlipCount(flipcount + 1)
       setCardsCompare([content]);
     } else if (cardsCompare.length === 1) {
+      setFlipCount(flipcount + 1)
       if (cardsCompare[0] === content) return;
       const newCardsCompare = [...cardsCompare, content];
       setCardsCompare(newCardsCompare);
@@ -120,16 +125,20 @@ export default function Home() {
         }
         setCardsCompare([]);
         setIsLockedFlip(false);
-      }, 800);
+      }, 1100);
     }
   };
 
   return (
     <>
-      <main className="flex border-4 border-yellow-200  w-[100vw] max-w-[1480px] h-screen">
-        <ChangeGameMode actualMode={gameMode} changeGameModeFunction={changeModeFunction} />
+      <main className="flex w-[100vw] max-w-[900px] h-screen">
+        <div className="fixed top-4 right-4 flex flex-col gap-5 items-end z-20">
+          <ChangeGameMode actualMode={gameMode} changeGameModeFunction={changeModeFunction} />
+          <span className="font-bold text-2xl">{flipcount}</span>
+        </div>
         
-        <div className={`border-4 border-orange-400 relative  grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8`}>
+        
+        <div className={`scale-95 relative top-2 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8`}>
 
             {contentList.map((content, index) => (
               <div

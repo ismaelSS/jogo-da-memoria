@@ -8,12 +8,12 @@ export const gameModes = {
     movement: false
   },
   normal:{
-    cardNumber:15,
-    movement: true
+    cardNumber:20,
+    movement: false
   },
   dificil:{
-    cardNumber:25,
-    movement: false
+    cardNumber:20,
+    movement: true
   },
   insano:{
     cardNumber:25,

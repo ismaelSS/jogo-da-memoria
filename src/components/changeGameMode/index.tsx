@@ -17,7 +17,7 @@ export default function ChangeGameMode({actualMode, changeGameModeFunction}:iCha
   }
 
   return(
-    <div className={` z-20 fixed right-8 bg-sky-500 top-4 rounded-sm overflow-hidden items-center justify-center pl-2 pr-2 ${isExpanded && 'pr-6 pb-2'}`} onClick={() => expand()}>
+    <div className={`z-20 bg-sky-500 rounded-sm overflow-hidden items-center justify-center pl-2 pr-2 ${isExpanded && 'pr-6 pb-2'}`} onClick={() => expand()}>
       
       {
         isExpanded ?
