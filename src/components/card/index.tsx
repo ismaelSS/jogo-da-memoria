@@ -9,9 +9,10 @@ interface iCardFlip{
   isFlipped:boolean
   clickFunction: (content:iCardContent) => void
   contentNumber:number
+  inDisassembleList: boolean
 }
 
-export default function CardFlip({isFlipped, content, clickFunction}:iCardFlip) {
+export default function CardFlip({isFlipped, content, clickFunction, inDisassembleList}:iCardFlip) {
   
 
   return (
@@ -32,10 +33,9 @@ export default function CardFlip({isFlipped, content, clickFunction}:iCardFlip) 
           </div>
 
             <div className="square-side rounded-sm bg-white back flex items-center justify-center">
-          {isFlipped && 
-              <CardContent content={content.emoji}/>
-            }
-              <div />
+              {(inDisassembleList)&& 
+                <CardContent content={content.emoji}/>
+              }
             </div>
         </div>
       </div>

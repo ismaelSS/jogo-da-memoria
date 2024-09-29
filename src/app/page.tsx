@@ -19,8 +19,8 @@ export default function Home() {
   const [findCards, setFindCards] = useState<string[]>([]);
   const [cardsCompare, setCardsCompare] = useState<iCardContent[]>([]);
   const [contentList, setContentList] = useState<iCardContent[]>([]);
+  const [contentToDisassemble, setContentToDisassemble] = useState<iCardContent[]>([]);
   const [gameMode, setGameMode] = useState<tGameModesOption>('normal');
-  const [isLockedFlip, setIsLockedFlip] = useState(false);
   const [isWin, setIsWind] = useState(false);
   const [reset, setReset] = useState(false);
   const [itensPerScreen, setItensPerScreen] = useState(5);
@@ -93,8 +93,8 @@ export default function Home() {
   const resetGame = () => {
     setFindCards([]);
     setCardsCompare([]);
-    setIsLockedFlip(false);
     setFlipCount(0)
+    setContentToDisassemble([])
     setTimeout(() => {
       setReset(!reset);
     }, 600);
@@ -115,20 +115,23 @@ export default function Home() {
     if (cardsCompare.length === 0) {
       setFlipCount(flipcount + 1)
       setCardsCompare([content]);
+      setContentToDisassemble([content]);
     } else if (cardsCompare.length === 1) {
       setFlipCount(flipcount + 1)
       if (cardsCompare[0] === content) return;
       const newCardsCompare = [...cardsCompare, content];
+      setContentToDisassemble(newCardsCompare)
       setCardsCompare(newCardsCompare);
-      setIsLockedFlip(true);
       setTimeout(() => {
         if (newCardsCompare[0].emoji === newCardsCompare[1].emoji) {
           setFindCards([...findCards, content.emoji]);
           WinCheck();
         }
         setCardsCompare([]);
-        setIsLockedFlip(false);
       }, flipTime);
+      setTimeout(()=>{
+        setContentToDisassemble([])
+      },flipTime + 300)
     }
   };
 
@@ -145,7 +148,7 @@ export default function Home() {
         </div>
         
         
-        <div className={`scale-95 relative top-2 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8`}>
+        <div className={`scale-95 relative top-2 `}>
 
             {contentList.map((content, index) => (
               <div
@@ -162,6 +165,7 @@ export default function Home() {
                   contentNumber={content.index}
                   isFlipped={cardsCompare.includes(content) || findCards.includes(content.emoji)}
                   content={content}
+                  inDisassembleList={contentToDisassemble.includes(content)}
                 />
               </div>
             ))}
