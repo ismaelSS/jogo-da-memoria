@@ -26,7 +26,7 @@ export default function Home() {
   const [itensPerScreen, setItensPerScreen] = useState(5);
   const [containerCardsWidth, setContainerCardsWidth] = useState(450)
   const [flipcount, setFlipCount] = useState(0)
-  const [isFastMod, setIsFastMod] = useState(true)
+  const [isFastMod, setIsFastMod] = useState(false)
 
   const flipTime = isFastMod ? 500 : 800
 
