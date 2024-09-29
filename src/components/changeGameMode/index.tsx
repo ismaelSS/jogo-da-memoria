@@ -8,7 +8,7 @@ interface iChangeGameMode {
 }
 
 export default function ChangeGameMode({actualMode, changeGameModeFunction}:iChangeGameMode) {
-  const [isExpanded, setIsExpanded] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(true)
 
   const expand = () => {
     if(isExpanded == false ){
