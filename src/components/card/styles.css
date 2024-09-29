@@ -18,7 +18,7 @@
   top: 0;
   left: 0;
   backface-visibility: hidden;
-  transition: transform 0.8s cubic-bezier(0.71, 0.03, 0.56, 0.85);
+  transition: transform 0.4s cubic-bezier(0.71, 0.03, 0.56, 0.85);
 }
 
 

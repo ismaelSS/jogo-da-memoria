@@ -125,7 +125,7 @@ export default function Home() {
         }
         setCardsCompare([]);
         setIsLockedFlip(false);
-      }, 1100);
+      }, 900);
     }
   };
 
