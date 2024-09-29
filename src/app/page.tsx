@@ -26,6 +26,9 @@ export default function Home() {
   const [itensPerScreen, setItensPerScreen] = useState(5);
   const [containerCardsWidth, setContainerCardsWidth] = useState(450)
   const [flipcount, setFlipCount] = useState(0)
+  const [isFastMod, setIsFastMod] = useState(true)
+
+  const flipTime = isFastMod ? 500 : 800
 
   const calculateItensPerScreen = (width: number) => {
     let itensQuantity = Math.round(width / 105)
@@ -125,7 +128,7 @@ export default function Home() {
         }
         setCardsCompare([]);
         setIsLockedFlip(false);
-      }, 900);
+      }, flipTime);
     }
   };
 
@@ -134,6 +137,10 @@ export default function Home() {
       <main className="flex w-[100vw] max-w-[900px] h-screen">
         <div className="fixed top-4 right-4 flex flex-col gap-5 items-end z-20">
           <ChangeGameMode actualMode={gameMode} changeGameModeFunction={changeModeFunction} />
+          <div className="flex gap-2">
+            <div onClick={() => setIsFastMod(!isFastMod)} className={`w-4 h-4 border-2 rounded-sm cursor-pointer ${isFastMod === true ? 'bg-white' : ''}`}/>
+            <span>Fast mode</span>
+          </div>
           <span className="font-bold text-2xl">{flipcount}</span>
         </div>
         
