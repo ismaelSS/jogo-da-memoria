@@ -59,7 +59,6 @@ export default function Home() {
     }));
     setContentList(initialContentList);
     setContainerCardsWidth(itensPerScreen * 90)
-    console.log(containerCardsWidth);
     
   }, [reset, gameMode, itensPerScreen]);
 
