@@ -33,7 +33,7 @@ export default function CardFlip({isFlipped, content, clickFunction, inDisassemb
           </div>
 
             <div className="square-side rounded-sm bg-white back flex items-center justify-center">
-              {(inDisassembleList)&& 
+              {(inDisassembleList || isFlipped)&& 
                 <CardContent content={content.emoji}/>
               }
             </div>
